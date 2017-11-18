@@ -1,0 +1,30 @@
+﻿<Window x:Class="StockFinder.Windows.Scanner.ScannerFilter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StockFinder.Windows"
+        mc:Ignorable="d"
+        Title="ScannerFilter" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>FilterStates</TextBlock>
+                    <Button x:Name="btnCustomize" Margin="5,0,0,1" Click="btnCustomize_Click">Customize</Button>
+                </StackPanel>
+            </GroupBox.Header>
+            <StackPanel x:Name="Filters">
+
+            </StackPanel>
+        </GroupBox>
+        <DockPanel Grid.Row="1">
+            <Button x:Name="btnCancel" IsCancel="True">Cancel</Button>
+            <Button x:Name="btnSave" IsDefault="True" HorizontalAlignment="Right" Click="btnSave_Click">Save</Button>
+        </DockPanel>
+    </Grid>
+</Window>

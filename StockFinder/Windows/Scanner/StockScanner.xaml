@@ -1,0 +1,28 @@
+﻿<Window x:Class="StockFinder.Windows.Scanner.StockScanner"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StockFinder.Windows"
+        mc:Ignorable="d"
+        Title="StockScanner" Height="500" Width="600" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button x:Name="btnReloadAndFind" Content="Reload and Find" Background="Beige" />
+                <Button x:Name="btnToggleAutoRefresh" Content="Auto Refresh On" Background="AliceBlue" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <ToggleButton x:Name="btnAlwaysOnTop" Content="Always On Top" Click="btnAlwaysOnTop_Click" />
+                <Button x:Name="btnSettings" Content="Settings" Click="btnSettings_Click" />
+            </StackPanel>
+
+        </DockPanel>
+
+        <DataGrid Grid.Row="1" x:Name="grid" ColumnWidth="*" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" IsSynchronizedWithCurrentItem="False"/>
+    </Grid>
+</Window>

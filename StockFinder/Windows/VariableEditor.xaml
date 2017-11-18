@@ -1,0 +1,47 @@
+﻿<Window x:Class="StockFinder.Windows.VariableEditor" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:StockFinder"
+        xmlns:windows="clr-namespace:StockFinder.Windows"
+        mc:Ignorable="d" Title="VariableEditor" Height="300" Width="800" ResizeMode="NoResize" x:Name="VarEditor">
+    <Window.Resources>
+        <windows:VariableListValueConverter x:Key="ValueConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" ToolTip="The display name for your property" />
+        <TextBox x:Name="txtLabel" Grid.Row="0" Grid.Column="1" Height="20" />
+        <TextBlock Text="Variable:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" ToolTip="The unique variable by which you can adress this property in a formula"/>
+        <TextBox x:Name="txtVariable" Grid.Row="1" Grid.Column="1" Height="20" />
+        <TextBlock Text="Formula:" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" ToolTip="The mathematical formula for calculating the value for this property" />
+        <TextBox x:Name="txtFormula" Grid.Row="2" Grid.Column="1" Height="20" />
+        <CheckBox x:Name="chkAllowFilter" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" IsChecked="True">Allow Filtering</CheckBox>
+        <DataGrid x:Name="grid" Grid.Column="2" Grid.Row="0" Grid.RowSpan="5" ColumnWidth="*" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Variable" Binding="{Binding Path=Key}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding Path=Value.Label}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3">
+            <Button IsCancel="True" Content="Cancel" VerticalAlignment="Center" Width="50" />
+            <Button x:Name="btnSubmit" IsDefault="True" Content="Create" HorizontalAlignment="Right" VerticalAlignment="Center" Click="btnSubmit_Click" Width="50">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource ValueConverter}">
+                        <Binding ElementName="txtLabel" Path="Text" />
+                        <Binding ElementName="txtVariable" Path="Text" />
+                        <Binding ElementName="txtFormula" Path="Text" />
+                    </MultiBinding>
+                </Button.IsEnabled>
+            </Button>
+        </DockPanel>
+    </Grid>
+</Window>
